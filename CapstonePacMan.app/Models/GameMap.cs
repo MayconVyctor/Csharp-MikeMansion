@@ -1,4 +1,5 @@
 using System.IO;
+using System;
 
 namespace CapstonePacMan.app.Models;
 
@@ -63,7 +64,7 @@ public class GameMap
         {
             return true;
         }
-        return Tiles[x, y].Type == TileType.Wall;
+        return Tiles[y, x].Type == TileType.Wall;
     }
 
     public Tile? GetPacManSpawn()
@@ -72,9 +73,9 @@ public class GameMap
         {
             for (int x = 0; x < Width; x++)
             {
-                if (Tiles[x, y].Type == TileType.PacManSpawn)
+                if (Tiles[y, x].Type == TileType.PacManSpawn)
                 {
-                    return Tiles[x, y];
+                    return Tiles[y, x];
                 }
             }
         }

@@ -1,3 +1,4 @@
+/home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/Maps/Level1.txt
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/CapstonePacMan.app
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/CapstonePacMan.app.deps.json
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/CapstonePacMan.app.runtimeconfig.json

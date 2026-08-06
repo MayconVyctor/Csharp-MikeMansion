@@ -23,7 +23,7 @@ namespace CapstonePacMan.app.Models
             Ghosts = new List<Ghost>();
 
             Map = new GameMap();
-            Map.Load("Maps/Level1.txt");
+            Map.Load("CapstonePacMan.app/Maps/Level1.txt");
             IsPaused = false;
 
             Tile? spawn = Map.GetPacManSpawn();
