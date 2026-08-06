@@ -17,7 +17,6 @@ namespace CapstonePacMan.app.Services
             CurrentGame.Score = 0;
             CurrentGame.CurrentLevel = 1;
             CurrentGame.IsPaused = false;
-            // resetar a posição do PacMan e Fantasmas 
         }
 
         public void Pause()

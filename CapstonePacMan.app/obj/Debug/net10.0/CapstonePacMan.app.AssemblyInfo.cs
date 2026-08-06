@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CapstonePacMan.app")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9dce4c465c91c9a79daa45d8860ef84efefc8dbf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f0eca57bba61fb1af14c61632a8768048649971")]
 [assembly: System.Reflection.AssemblyProductAttribute("CapstonePacMan.app")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CapstonePacMan.app")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

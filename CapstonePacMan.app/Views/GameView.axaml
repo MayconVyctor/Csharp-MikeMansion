@@ -1,0 +1,24 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:CapstonePacMan.app.ViewModels"
+    x:DataType="vm:GameViewModel"
+    x:Class="CapstonePacMan.app.Views.GameView">
+
+    <Canvas>
+
+        <Image
+            Width="800"
+            Height="800"
+            Source="/Assets/background.png"/>
+
+        <Image
+            Width="32"
+            Height="32"
+            Source="/Assets/pacman-art/pacman-right/1.png"
+            Canvas.Left="{Binding Game.PacMan.X}"
+            Canvas.Top="{Binding Game.PacMan.Y}" />
+
+    </Canvas>
+
+</UserControl>
