@@ -22,18 +22,22 @@ public class GameViewModel : ViewModelBase
         {
             case "Up":
                 Game.PacMan.Y -= speed;
+                Game.PacMan.ImagePath = "/Assets/pacman-art/pacman-up/1.png";
                 break;
 
             case "Down":
                 Game.PacMan.Y += speed;
+                Game.PacMan.ImagePath = "/Assets/pacman-art/pacman-down/1.png";
                 break;
 
             case "Left":
                 Game.PacMan.X -= speed;
+                Game.PacMan.ImagePath = "/Assets/pacman-art/pacman-left/1.png";
                 break;
 
             case "Right":
                 Game.PacMan.X += speed;
+                Game.PacMan.ImagePath = "/Assets/pacman-art/pacman-right/1.png";
                 break;
         }
          OnPropertyChanged(nameof(PacManScreenX));
