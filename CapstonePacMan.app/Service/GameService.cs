@@ -45,7 +45,6 @@ namespace CapstonePacMan.app.Services
         public void NextLevel()
         {
             CurrentGame.CurrentLevel++;
-            // Lógica para recarregar o mapa do próximo nível
         }
     }
 }
