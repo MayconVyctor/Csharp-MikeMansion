@@ -15,7 +15,7 @@
         <Image
             Width="20"
             Height="20"
-            Source="/Assets/pacman-art/pacman-right/1.png"
+            Source="{Binding Game.PacMan.ImagePath, Converter={StaticResource PathToBitmap}}"
             Canvas.Left="{Binding PacManScreenX}"
             Canvas.Top="{Binding PacManScreenY}" />
 
