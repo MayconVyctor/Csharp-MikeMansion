@@ -4,7 +4,10 @@ namespace CapstonePacMan.app.Models
     Wall,
     Path,
     Pellet,
-    PowerPellet
+    PowerPellet,
+
+    GhostSpawn,
+    PacManSpawn
     }
 
 }
