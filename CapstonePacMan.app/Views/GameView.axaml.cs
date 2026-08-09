@@ -9,15 +9,31 @@ public partial class GameView : UserControl
     public GameView()
     {
         InitializeComponent();
-        DataContext = new GameViewModel();
+        var vm = new GameViewModel();
+        DataContext = vm;
         KeyDown += OnKeyDown;
+
+        vm.GameOver += async () => await ShowGameOverPopup(vm);
     }
 
-      private void OnKeyDown(object? sender, KeyEventArgs e)
+    private async System.Threading.Tasks.Task ShowGameOverPopup(GameViewModel vm)
     {
-        if(DataContext is ViewModels.GameViewModel vm)
+        var popup = new GameOverWindow();
+
+        var topLevel = TopLevel.GetTopLevel(this) as Window;
+        var result = await popup.ShowDialog<string?>(topLevel);
+
+        if (result == "restart")
         {
-            switch(e.Key)
+            vm.ResetGame();
+        }
+    }
+
+    private void OnKeyDown(object? sender, KeyEventArgs e)
+    {
+        if (DataContext is GameViewModel vm)
+        {
+            switch (e.Key)
             {
                 case Key.Up:
                     vm.MovePacman("Up");
@@ -38,4 +54,3 @@ public partial class GameView : UserControl
         }
     }
 }
-

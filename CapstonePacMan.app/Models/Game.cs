@@ -21,6 +21,26 @@ namespace CapstonePacMan.app.Models
             CurrentLevel = 1;
 
             Ghosts = new List<Ghost>();
+            Ghosts.Add(new Ghost
+            {
+                X = 12,
+                Y = 10,
+                ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/blinky.png"
+            });
+
+            Ghosts.Add(new Ghost
+            {
+                X = 13,
+                Y = 10,
+                ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/pinky.png"
+            });
+
+            Ghosts.Add(new Ghost
+            {
+                X = 14,
+                Y = 10,
+                ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/inky.png"
+            });
 
             Map = new GameMap();
             Map.Load("CapstonePacMan.app/Maps/Level1.txt");
@@ -33,5 +53,27 @@ namespace CapstonePacMan.app.Models
                 PacMan.Y = spawn.Y;
             }
         }
+        public void Reset()
+        {
+            PacMan = new PacMan();
+            Score = 0;
+            CurrentLevel = 1;
+
+            Ghosts = new List<Ghost>();
+            Ghosts.Add(new Ghost { X = 12, Y = 10, ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/blinky.png" });
+            Ghosts.Add(new Ghost { X = 13, Y = 10, ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/pinky.png" });
+            Ghosts.Add(new Ghost { X = 14, Y = 10, ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/inky.png" });
+
+            Map.Load("CapstonePacMan.app/Maps/Level1.txt"); 
+
+            Tile? spawn = Map.GetPacManSpawn();
+            if (spawn != null)
+            {
+                PacMan.X = spawn.X;
+                PacMan.Y = spawn.Y;
+            }
+        }
+
     }
+    
 }

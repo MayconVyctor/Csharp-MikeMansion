@@ -1,5 +1,6 @@
 using System.IO;
 using System;
+using System.Collections.Generic;
 
 namespace CapstonePacMan.app.Models;
 
@@ -66,6 +67,15 @@ public class GameMap
         }
         return Tiles[y, x].Type == TileType.Wall;
     }
+    public Tile? GetTile(int x, int y)
+    {
+        if (x < 0 || x >= Width || y < 0 || y >= Height)
+        {
+            return null;
+        }
+
+        return Tiles?[y, x];
+    }
 
     public Tile? GetPacManSpawn()
     {
@@ -80,5 +90,17 @@ public class GameMap
             }
         }
         return null;
+    }
+    public IEnumerable<Tile> AllTiles()
+    {
+        if (Tiles == null) yield break;
+
+        for (int y = 0; y < Height; y++)
+        {
+            for (int x = 0; x < Width; x++)
+            {
+                yield return Tiles[y, x];
+            }
+        }
     }
 }

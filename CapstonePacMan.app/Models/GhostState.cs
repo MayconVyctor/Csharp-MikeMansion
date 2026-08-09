@@ -1,4 +1,4 @@
-namespace CapstonePacMan.Models
+namespace CapstonePacMan.app.Models
 {
     public enum GhostState
     {

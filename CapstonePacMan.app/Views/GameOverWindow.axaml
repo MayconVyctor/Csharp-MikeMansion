@@ -1,0 +1,24 @@
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="CapstonePacMan.app.Views.GameOverWindow"
+    Title="Fim de Jogo"
+    Width="300"
+    Height="180"
+    WindowStartupLocation="CenterOwner"
+    CanResize="False">
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="20">
+        <TextBlock
+            Text="FIM DE JOGO"
+            FontSize="22"
+            FontWeight="Bold"
+            HorizontalAlignment="Center" />
+
+        <Button
+            Content="Reiniciar"
+            HorizontalAlignment="Center"
+            Padding="20,8"
+            Click="OnRestartClick" />
+    </StackPanel>
+</Window>

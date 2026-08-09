@@ -7,40 +7,48 @@
         mc:Ignorable="d"
         x:Class="CapstonePacMan.app.Views.MainWindow"
         x:DataType="vm:MainViewModel"
-        Width="800"
-        Height="600"
+        SizeToContent="WidthAndHeight"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen"
         Title="PACMAN">
 
     <Grid>
-        <Grid IsVisible="{Binding IsInMenu}">
-            <Image Source="/Assets/background.png"
-                   Stretch="Fill"/>
-
+        <Grid IsVisible="{Binding IsInMenu}" Background="Black" Width="800" Height="840">
             <StackPanel
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Spacing="15">
+                Spacing="30">
 
-                <Button
-                    Width="220"
-                    Content="Iniciar Jogo"
-                    Command="{Binding StartGameCommand}"/>
+                <TextBlock
+                    Text="PACMAN"
+                    FontSize="64"
+                    FontWeight="Bold"
+                    Foreground="Yellow"
+                    HorizontalAlignment="Center" />
 
-                <Button
-                    Width="220"
-                    Content="Placar"/>
+                <StackPanel Spacing="15">
+                    <Button
+                        Width="220"
+                        Content="Iniciar Jogo"
+                        HorizontalAlignment="Center"
+                        Command="{Binding StartGameCommand}"/>
 
-                <Button
-                    Width="220"
-                    Content="Sair"/>
+                    <Button
+                        Width="220"
+                        Content="Placar"
+                        HorizontalAlignment="Center"/>
 
+                    <Button
+                        Width="220"
+                        Content="Sair"
+                        HorizontalAlignment="Center"/>
+                </StackPanel>
             </StackPanel>
-
         </Grid>
+
         <Grid IsVisible="{Binding !IsInMenu}">
             <views:GameView/>
         </Grid>
-
     </Grid>
 
 </Window>

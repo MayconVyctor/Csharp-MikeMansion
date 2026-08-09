@@ -1,0 +1,27 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="CapstonePacMan.app.Views.StartView">
+
+    <Grid Background="Black">
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Spacing="30">
+
+            <TextBlock
+                Text="PACMAN"
+                FontSize="64"
+                FontWeight="Bold"
+                Foreground="Yellow"
+                HorizontalAlignment="Center" />
+
+            <Button
+                Content="INICIAR"
+                FontSize="20"
+                Padding="30,10"
+                HorizontalAlignment="Center"
+                Click="OnStartClick" />
+        </StackPanel>
+    </Grid>
+</UserControl>
