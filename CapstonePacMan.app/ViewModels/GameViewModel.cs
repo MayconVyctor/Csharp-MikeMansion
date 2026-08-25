@@ -20,6 +20,7 @@ public class GameViewModel : ViewModelBase
     private bool _gameOverTriggered = false; 
     private bool _gameWonTriggered = false;
     private bool _isProcessingDeath = false;
+    private int _vulnerableSecondsRemaining;
     public event Action? GameOver;
     public event Action? GameWon;
 
@@ -30,6 +31,7 @@ public class GameViewModel : ViewModelBase
     private string? _pacmanDirection;
     private DispatcherTimer? _pacmanTimer;
     private DispatcherTimer? _ghostTimer;
+    private DispatcherTimer? _powerTimer;
 
     public GameViewModel()
     {
@@ -58,6 +60,12 @@ public class GameViewModel : ViewModelBase
             OnPropertyChanged(nameof(Game));
         };
         _ghostTimer.Start();
+
+        _powerTimer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(1)
+        };
+        _powerTimer.Tick += (s, e) => UpdatePowerMode();
     }
 
     public void MovePacman(string direction)
@@ -108,6 +116,7 @@ public class GameViewModel : ViewModelBase
             {
                 Game.Score += 50;
                 tile.Type = TileType.Empty;
+                ActivatePowerMode();
             }
 
             CheckWinCondition();
@@ -218,47 +227,93 @@ public class GameViewModel : ViewModelBase
             ghost.Y += chosen.dy;
         }
     }
-   private void CheckGhostCollision()
+    private void CheckGhostCollision()
     {
-        bool collided = false;
-
         foreach (var ghost in Game.Ghosts)
         {
             if (ghost.X == Game.PacMan.X && ghost.Y == Game.PacMan.Y)
             {
-                collided = true;
-                break;
-            }
-        }
+                if (ghost.State == GhostState.Scared)
+                {
+                    Game.Score += 200;
+                    ReturnGhostToBase(ghost);
+                    OnPropertyChanged(nameof(Score));
+                    OnPropertyChanged(nameof(Game));
+                    return;
+                }
 
-        if (collided && !_isProcessingDeath)
-        {
-            _isProcessingDeath = true;
+                if (!_isProcessingDeath)
+                {
+                    _isProcessingDeath = true;
+                    Game.PacMan.Lives -= 1;
+                    OnPropertyChanged(nameof(Lives));
 
-            Game.PacMan.Lives -= 1;
-            OnPropertyChanged(nameof(Lives));
-
-            if (Game.PacMan.Lives <= 0)
-            {
-                OnPropertyChanged(nameof(IsGameOver));
-                
-                 if (!_gameOverTriggered)
+                    if (Game.PacMan.Lives <= 0)
                     {
-                        _gameOverTriggered = true;
-                        _pacmanTimer?.Stop();
-                        _ghostTimer?.Stop();
-                        GameOver?.Invoke();
+                        OnPropertyChanged(nameof(IsGameOver));
+
+                        if (!_gameOverTriggered)
+                        {
+                            _gameOverTriggered = true;
+                            _pacmanTimer?.Stop();
+                            _ghostTimer?.Stop();
+                            _powerTimer?.Stop();
+                            GameOver?.Invoke();
+                        }
                     }
-            }
-            else
-            {
-                ResetPositions();
+                    else
+                    {
+                        ResetPositions();
+                    }
+                }
+
+                return;
             }
         }
-        else if (!collided)
+
+        _isProcessingDeath = false;
+    }
+
+    private void ActivatePowerMode()
+    {
+        _vulnerableSecondsRemaining = 8;
+
+        foreach (var ghost in Game.Ghosts)
         {
-            _isProcessingDeath = false;
+            if (ghost.State != GhostState.Eaten)
+            {
+                ghost.State = GhostState.Scared;
+            }
         }
+
+        _powerTimer?.Start();
+    }
+
+    private void UpdatePowerMode()
+    {
+        _vulnerableSecondsRemaining--;
+        if (_vulnerableSecondsRemaining > 0)
+        {
+            return;
+        }
+
+        foreach (var ghost in Game.Ghosts)
+        {
+            if (ghost.State == GhostState.Scared)
+            {
+                ghost.State = GhostState.Chase;
+            }
+        }
+
+        _powerTimer?.Stop();
+    }
+
+    private void ReturnGhostToBase(Ghost ghost)
+    {
+        ghost.State = GhostState.Eaten;
+        ghost.X = 13;
+        ghost.Y = 10;
+        ghost.State = GhostState.Chase;
     }
 
     private void CheckWinCondition()
@@ -304,6 +359,7 @@ public class GameViewModel : ViewModelBase
         _isProcessingDeath = false;
         _gameOverTriggered = false;
         _gameWonTriggered = false;
+        _vulnerableSecondsRemaining = 0;
 
         OnPropertyChanged(nameof(Score));
         OnPropertyChanged(nameof(Lives));
@@ -315,5 +371,6 @@ public class GameViewModel : ViewModelBase
 
         _pacmanTimer?.Start();
         _ghostTimer?.Start();
+        _powerTimer?.Stop();
     }
 }

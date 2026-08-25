@@ -8,8 +8,11 @@ namespace CapstonePacMan.app.Models;
 
 public class Ghost : INotifyPropertyChanged
 {
+    private const string VulnerableImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/blue_ghost.png";
     private int _x;
     private int _y;
+    private GhostState _state;
+    private string _normalImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/blinky.png";
 
     public int X
     {
@@ -38,7 +41,16 @@ public class Ghost : INotifyPropertyChanged
     public double ScreenX => X * 24;
     public double ScreenY => Y * 24;
 
-    public GhostState State { get; set; }
+    public GhostState State
+    {
+        get => _state;
+        set
+        {
+            _state = value;
+            LoadImage();
+            OnPropertyChanged();
+        }
+    }
 
     public int DirX { get; set; } = 0;
     public int DirY { get; set; } = 0;
@@ -53,6 +65,7 @@ public class Ghost : INotifyPropertyChanged
         set
         {
             _imagePath = value;
+            _normalImagePath = value;
             LoadImage();
         }
     }
@@ -68,8 +81,12 @@ public class Ghost : INotifyPropertyChanged
 
     private void LoadImage()
     {
-        var uri = new Uri(_imagePath);
+        var imagePath = State == GhostState.Scared
+            ? VulnerableImagePath
+            : _normalImagePath;
+        var uri = new Uri(imagePath);
         Image = new Bitmap(AssetLoader.Open(uri));
+        OnPropertyChanged(nameof(Image));
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
