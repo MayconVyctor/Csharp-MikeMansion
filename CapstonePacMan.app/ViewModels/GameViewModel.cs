@@ -24,11 +24,26 @@ public class GameViewModel : ViewModelBase
 
     public double PacManScreenX => Game.PacMan.X * TileSize;
     public double PacManScreenY => Game.PacMan.Y * TileSize;
+    private string? _pacmanDirection;
+    private DispatcherTimer? _pacmanTimer;
     private DispatcherTimer? _ghostTimer;
 
     public GameViewModel()
     {
         Game = new Game();
+        _pacmanTimer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromMilliseconds(180)
+        };
+        _pacmanTimer.Tick += (s, e) =>
+        {
+            if (_pacmanDirection != null)
+            {
+                MovePacman(_pacmanDirection);
+            }
+        };
+        _pacmanTimer.Start();
+
         _ghostTimer = new DispatcherTimer
         {
             Interval = TimeSpan.FromMilliseconds(400) 
@@ -44,6 +59,7 @@ public class GameViewModel : ViewModelBase
 
     public void MovePacman(string direction)
     {
+        _pacmanDirection = direction;
         int speed = 1;
 
         int nextX = Game.PacMan.X;
@@ -224,6 +240,7 @@ public class GameViewModel : ViewModelBase
                  if (!_gameOverTriggered)
                     {
                         _gameOverTriggered = true;
+                        _pacmanTimer?.Stop();
                         _ghostTimer?.Stop();
                         GameOver?.Invoke();
                     }
@@ -264,6 +281,7 @@ public class GameViewModel : ViewModelBase
     public void ResetGame()
     {
         Game.Reset();
+        _pacmanDirection = null;
         _isProcessingDeath = false;
         _gameOverTriggered = false;
 
@@ -275,6 +293,7 @@ public class GameViewModel : ViewModelBase
         OnPropertyChanged(nameof(MapTiles));
         OnPropertyChanged(nameof(Game));
 
+        _pacmanTimer?.Start();
         _ghostTimer?.Start();
     }
 }

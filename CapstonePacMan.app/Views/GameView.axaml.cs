@@ -12,6 +12,7 @@ public partial class GameView : UserControl
         var vm = new GameViewModel();
         DataContext = vm;
         KeyDown += OnKeyDown;
+        AttachedToVisualTree += (_, _) => Focus();
 
         vm.GameOver += async () => await ShowGameOverPopup(vm);
     }
