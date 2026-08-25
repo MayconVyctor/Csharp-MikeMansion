@@ -33,7 +33,7 @@ public class GameBoardViewModel : ViewModelBase
     private const int NormalPacmanMoveIntervalMilliseconds = 260;
     private const int NormalGhostMoveIntervalMilliseconds = 600;
     private const int HardPacmanMoveIntervalMilliseconds = 220;
-    private const int HardGhostMoveIntervalMilliseconds = 450;
+    private const int HardGhostMoveIntervalMilliseconds = 320;
 
     public double PacManScreenX => Game.PacMan.X * TileSize;
     public double PacManScreenY => Game.PacMan.Y * TileSize;
