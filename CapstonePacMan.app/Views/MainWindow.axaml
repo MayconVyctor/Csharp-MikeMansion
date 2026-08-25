@@ -40,6 +40,12 @@
                         SelectedItem="{Binding SelectedLevel}"
                         PlaceholderText="Escolha o nivel" />
 
+                    <ComboBox
+                        Width="220"
+                        ItemsSource="{Binding AvailableDifficulties}"
+                        SelectedItem="{Binding SelectedDifficulty}"
+                        PlaceholderText="Escolha a dificuldade" />
+
                     <Button
                         Width="220"
                         Content="Placar"

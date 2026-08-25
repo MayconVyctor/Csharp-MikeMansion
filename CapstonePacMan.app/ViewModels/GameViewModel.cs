@@ -28,8 +28,12 @@ public class GameViewModel : ViewModelBase
     public event Action? GameWon;
 
     public const int TileSize = 24;
-    private const int PacmanMoveIntervalMilliseconds = 260;
-    private const int GhostMoveIntervalMilliseconds = 600;
+    private const int EasyPacmanMoveIntervalMilliseconds = 300;
+    private const int EasyGhostMoveIntervalMilliseconds = 800;
+    private const int NormalPacmanMoveIntervalMilliseconds = 260;
+    private const int NormalGhostMoveIntervalMilliseconds = 600;
+    private const int HardPacmanMoveIntervalMilliseconds = 220;
+    private const int HardGhostMoveIntervalMilliseconds = 450;
 
     public double PacManScreenX => Game.PacMan.X * TileSize;
     public double PacManScreenY => Game.PacMan.Y * TileSize;
@@ -40,12 +44,13 @@ public class GameViewModel : ViewModelBase
     private DispatcherTimer? _powerTimer;
     private DispatcherTimer? _ghostReleaseTimer;
 
-    public GameViewModel(int level = 1)
+    public GameViewModel(int level = 1, string difficulty = "Normal")
     {
         Game = new Game(level);
+        var intervals = GetDifficultyIntervals(difficulty);
         _pacmanTimer = new DispatcherTimer
         {
-            Interval = TimeSpan.FromMilliseconds(PacmanMoveIntervalMilliseconds)
+            Interval = TimeSpan.FromMilliseconds(intervals.pacmanMilliseconds)
         };
         _pacmanTimer.Tick += (s, e) =>
         {
@@ -62,7 +67,7 @@ public class GameViewModel : ViewModelBase
 
         _ghostTimer = new DispatcherTimer
         {
-            Interval = TimeSpan.FromMilliseconds(GhostMoveIntervalMilliseconds)
+            Interval = TimeSpan.FromMilliseconds(intervals.ghostMilliseconds)
         };
         _ghostTimer.Tick += (s, e) =>
         {
@@ -84,6 +89,16 @@ public class GameViewModel : ViewModelBase
         };
         _ghostReleaseTimer.Tick += (s, e) => ReleaseNextGhost();
         _ghostReleaseTimer.Start();
+    }
+
+    private static (int pacmanMilliseconds, int ghostMilliseconds) GetDifficultyIntervals(string difficulty)
+    {
+        return difficulty switch
+        {
+            "Facil" => (EasyPacmanMoveIntervalMilliseconds, EasyGhostMoveIntervalMilliseconds),
+            "Dificil" => (HardPacmanMoveIntervalMilliseconds, HardGhostMoveIntervalMilliseconds),
+            _ => (NormalPacmanMoveIntervalMilliseconds, NormalGhostMoveIntervalMilliseconds)
+        };
     }
 
     public void MovePacman(string direction)

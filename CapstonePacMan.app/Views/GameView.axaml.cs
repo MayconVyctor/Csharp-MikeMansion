@@ -7,14 +7,14 @@ namespace CapstonePacMan.app.Views;
 
 public partial class GameBoardView : UserControl
 {
-    public GameBoardView() : this(1)
+    public GameBoardView() : this(1, "Normal")
     {
     }
 
-    public GameBoardView(int level)
+    public GameBoardView(int level, string difficulty)
     {
         InitializeComponent();
-        var vm = new GameViewModel(level);
+        var vm = new GameViewModel(level, difficulty);
         DataContext = vm;
         KeyDown += OnKeyDown;
         AttachedToVisualTree += (_, _) => Focus();

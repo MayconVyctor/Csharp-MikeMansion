@@ -21,7 +21,9 @@ public partial class MainWindow : Window
     {
         if (DataContext is MainViewModel viewModel)
         {
-            GameContent.Content = new GameBoardView(viewModel.SelectedLevel);
+            GameContent.Content = new GameBoardView(
+                viewModel.SelectedLevel,
+                viewModel.SelectedDifficulty);
             viewModel.IsInMenu = false;
         }
     }
