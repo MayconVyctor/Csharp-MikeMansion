@@ -10,6 +10,12 @@
     CanResize="False">
 
     <StackPanel Margin="28" Spacing="18">
+        <Image
+            Width="72"
+            Height="72"
+            Source="/Assets/AssetsMikeMansion/AssetsIcons/Coins.png"
+            HorizontalAlignment="Center" />
+
         <TextBlock
             Text="MELHORES PONTUACOES"
             FontSize="24"

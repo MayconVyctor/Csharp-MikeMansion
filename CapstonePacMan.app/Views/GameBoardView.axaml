@@ -7,9 +7,16 @@
     x:Class="CapstonePacMan.app.Views.GameBoardView"
     Focusable="True">
 
-    <Canvas Width="800" Height="800">
+    <Canvas Width="672" Height="592">
 
-        <Rectangle Width="800" Height="40" Fill="#0D0D0D" />
+        <Rectangle Width="672" Height="40" Fill="#0D0D0D" />
+
+        <Image
+            Width="26"
+            Height="26"
+            Source="/Assets/AssetsMikeMansion/AssetsIcons/Coin.png"
+            Canvas.Left="132"
+            Canvas.Top="7" />
 
         <TextBlock
             Text="{Binding Score, StringFormat='SCORE: {0}'}"
@@ -24,7 +31,7 @@
             FontSize="20"
             FontWeight="Bold"
             Foreground="Red"
-            Canvas.Left="600"
+            Canvas.Left="535"
             Canvas.Top="8"/>
 
         <TextBlock
@@ -37,14 +44,14 @@
             Canvas.Top="300"
             IsVisible="{Binding IsPaused}" />
 
-        <Canvas Canvas.Top="40" Width="800" Height="800">
+        <Canvas Canvas.Top="40" Width="672" Height="552">
 
-            <Rectangle Width="800" Height="800" Fill="Black" />
+            <Rectangle Width="672" Height="552" Fill="Black" />
 
             <ItemsControl
                 ItemsSource="{Binding MapTiles}"
-                Width="800"
-                Height="800"
+                Width="672"
+                Height="552"
                 ClipToBounds="False">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -72,17 +79,17 @@
                             <Ellipse
                                 Width="4"
                                 Height="4"
-                                Fill="Orange"
+                                Fill="#FFD166"
                                 Canvas.Left="10"
                                 Canvas.Top="10"
                                 IsVisible="{Binding IsPellet}" />
 
-                            <Ellipse
-                                Width="10"
-                                Height="10"
-                                Fill="Yellow"
-                                Canvas.Left="7"
-                                Canvas.Top="7"
+                            <Image
+                                Width="16"
+                                Height="16"
+                                Source="/Assets/AssetsMikeMansion/AssetsIcons/Power.png"
+                                Canvas.Left="4"
+                                Canvas.Top="4"
                                 IsVisible="{Binding IsPowerPellet}" />
 
                             <Image
@@ -131,8 +138,8 @@
 
             <ItemsControl
                 ItemsSource="{Binding Game.Ghosts}"
-                Width="800"
-                Height="800"
+                Width="672"
+                Height="552"
                 ClipToBounds="False">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

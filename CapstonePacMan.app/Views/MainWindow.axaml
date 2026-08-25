@@ -13,25 +13,27 @@
         Title="Mike Mansion">
 
     <Grid>
-        <Grid IsVisible="{Binding IsInMenu}" Background="Black" Width="800" Height="840">
+        <Grid IsVisible="{Binding IsInMenu}" Background="Black" Width="672" Height="760">
+            <Image
+                Source="/Assets/AssetsMikeMansion/AssetTelaInicialMikeMansion/CapaMikeMansion.jpeg"
+                Stretch="UniformToFill"
+                Opacity="0.72" />
+
+            <Rectangle
+                Fill="#66000000"
+                IsHitTestVisible="False" />
+
             <StackPanel
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Spacing="30">
-
-                <TextBlock
-                    Text="MIKE MANSION"
-                    FontSize="64"
-                    FontWeight="Bold"
-                    Foreground="Yellow"
-                    HorizontalAlignment="Center" />
+                Spacing="15"
+                Width="240">
 
                 <StackPanel Spacing="15">
                     <Button
                         Width="220"
                         Content="Iniciar Jogo"
                         HorizontalAlignment="Center"
-                        Command="{Binding StartGameCommand}"
                         Click="OnStartGameClick"/>
 
                     <ComboBox
