@@ -33,6 +33,7 @@ public class GameViewModel : ViewModelBase
     public double PacManScreenX => Game.PacMan.X * TileSize;
     public double PacManScreenY => Game.PacMan.Y * TileSize;
     private string? _pacmanDirection;
+    private string? _requestedPacmanDirection;
     private DispatcherTimer? _pacmanTimer;
     private DispatcherTimer? _ghostTimer;
     private DispatcherTimer? _powerTimer;
@@ -47,7 +48,11 @@ public class GameViewModel : ViewModelBase
         };
         _pacmanTimer.Tick += (s, e) =>
         {
-            if (_pacmanDirection != null)
+            if (_requestedPacmanDirection != null && CanMovePacman(_requestedPacmanDirection))
+            {
+                MovePacman(_requestedPacmanDirection);
+            }
+            else if (_pacmanDirection != null)
             {
                 MovePacman(_pacmanDirection);
             }
@@ -82,7 +87,6 @@ public class GameViewModel : ViewModelBase
 
     public void MovePacman(string direction)
     {
-        _pacmanDirection = direction;
         int speed = 1;
 
         int nextX = Game.PacMan.X;
@@ -112,6 +116,7 @@ public class GameViewModel : ViewModelBase
             return;
         }
 
+        _pacmanDirection = direction;
         Game.PacMan.X = nextX;
         Game.PacMan.Y = nextY;
 
@@ -194,12 +199,37 @@ public class GameViewModel : ViewModelBase
 
     public void ChangePacmanDirection(string direction)
     {
-        if (_pacmanDirection == direction)
+        _requestedPacmanDirection = direction;
+        if (_pacmanDirection == null || CanMovePacman(direction))
         {
-            return;
+            MovePacman(direction);
+        }
+    }
+
+    private bool CanMovePacman(string direction)
+    {
+        int nextX = Game.PacMan.X;
+        int nextY = Game.PacMan.Y;
+
+        switch (direction)
+        {
+            case "Up":
+                nextY--;
+                break;
+            case "Down":
+                nextY++;
+                break;
+            case "Left":
+                nextX--;
+                break;
+            case "Right":
+                nextX++;
+                break;
+            default:
+                return false;
         }
 
-        MovePacman(direction);
+        return !Game.Map.IsWall(nextX, nextY);
     }
 
     private static readonly Random _rng = new Random();
@@ -449,6 +479,7 @@ public class GameViewModel : ViewModelBase
     {
         Game.Reset();
         _pacmanDirection = null;
+        _requestedPacmanDirection = null;
         _isProcessingDeath = false;
         _gameOverTriggered = false;
         _gameWonTriggered = false;
