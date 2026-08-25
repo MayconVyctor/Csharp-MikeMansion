@@ -192,6 +192,16 @@ public class GameViewModel : ViewModelBase
         CheckGhostCollision();
     }
 
+    public void ChangePacmanDirection(string direction)
+    {
+        if (_pacmanDirection == direction)
+        {
+            return;
+        }
+
+        MovePacman(direction);
+    }
+
     private static readonly Random _rng = new Random();
 
     private static readonly (int dx, int dy)[] Directions = new (int, int)[]

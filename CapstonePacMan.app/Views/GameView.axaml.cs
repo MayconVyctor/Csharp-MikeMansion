@@ -42,19 +42,19 @@ public partial class GameBoardView : UserControl
             switch (e.Key)
             {
                 case Key.Up:
-                    vm.MovePacman("Up");
+                    vm.ChangePacmanDirection("Up");
                     break;
 
                 case Key.Down:
-                    vm.MovePacman("Down");
+                    vm.ChangePacmanDirection("Down");
                     break;
 
                 case Key.Left:
-                    vm.MovePacman("Left");
+                    vm.ChangePacmanDirection("Left");
                     break;
 
                 case Key.Right:
-                    vm.MovePacman("Right");
+                    vm.ChangePacmanDirection("Right");
                     break;
             }
         }
