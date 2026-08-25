@@ -27,6 +27,16 @@
             Canvas.Left="600"
             Canvas.Top="8"/>
 
+        <TextBlock
+            Text="PAUSADO"
+            FontSize="32"
+            FontWeight="Bold"
+            Foreground="Yellow"
+            HorizontalAlignment="Center"
+            Canvas.Left="340"
+            Canvas.Top="300"
+            IsVisible="{Binding IsPaused}" />
+
         <Canvas Canvas.Top="40" Width="800" Height="800">
 
             <Rectangle Width="800" Height="800" Fill="Black" />

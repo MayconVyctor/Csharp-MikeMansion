@@ -41,6 +41,12 @@ public partial class GameBoardView : UserControl
     {
         if (DataContext is GameViewModel vm)
         {
+            if (e.Key == Key.Space)
+            {
+                vm.TogglePause();
+                return;
+            }
+
             switch (e.Key)
             {
                 case Key.Up:

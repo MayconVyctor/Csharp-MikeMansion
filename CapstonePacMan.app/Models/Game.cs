@@ -19,6 +19,7 @@ namespace CapstonePacMan.app.Models
 
             Score = 0;
             CurrentLevel = 1;
+            IsPaused = false;
 
             Ghosts = new List<Ghost>();
             Ghosts.Add(new Ghost

@@ -16,6 +16,7 @@ public class GameViewModel : ViewModelBase
     public int Score => Game.Score;
     public int Lives => Game.PacMan.Lives;
     public bool IsGameOver => Game.IsGameOver; 
+    public bool IsPaused => Game.IsPaused;
     public IEnumerable<Tile> MapTiles => Game.Map.AllTiles();
     private bool _gameOverTriggered = false; 
     private bool _gameWonTriggered = false;
@@ -87,6 +88,11 @@ public class GameViewModel : ViewModelBase
 
     public void MovePacman(string direction)
     {
+        if (Game.IsPaused)
+        {
+            return;
+        }
+
         int speed = 1;
 
         int nextX = Game.PacMan.X;
@@ -244,6 +250,11 @@ public class GameViewModel : ViewModelBase
 
     public void MoveGhosts()
     {
+        if (Game.IsPaused)
+        {
+            return;
+        }
+
         foreach (var ghost in Game.Ghosts)
         {
             if (ghost.State == GhostState.InBase)
@@ -401,6 +412,11 @@ public class GameViewModel : ViewModelBase
 
     private void UpdatePowerMode()
     {
+        if (Game.IsPaused)
+        {
+            return;
+        }
+
         _vulnerableSecondsRemaining--;
         if (_vulnerableSecondsRemaining > 0)
         {
@@ -428,6 +444,11 @@ public class GameViewModel : ViewModelBase
 
     private void ReleaseNextGhost()
     {
+        if (Game.IsPaused)
+        {
+            return;
+        }
+
         Ghost? ghost = Game.Ghosts.FirstOrDefault(item => item.State == GhostState.InBase);
         if (ghost == null)
         {
@@ -500,5 +521,36 @@ public class GameViewModel : ViewModelBase
         _powerTimer?.Stop();
         _ghostReleaseTimer?.Stop();
         _ghostReleaseTimer?.Start();
+    }
+
+    public void TogglePause()
+    {
+        if (_gameOverTriggered || _gameWonTriggered)
+        {
+            return;
+        }
+
+        Game.IsPaused = !Game.IsPaused;
+        if (Game.IsPaused)
+        {
+            _pacmanTimer?.Stop();
+            _ghostTimer?.Stop();
+            _powerTimer?.Stop();
+            _ghostReleaseTimer?.Stop();
+        }
+        else
+        {
+            _pacmanTimer?.Start();
+            _ghostTimer?.Start();
+
+            if (_vulnerableSecondsRemaining > 0)
+            {
+                _powerTimer?.Start();
+            }
+
+            _ghostReleaseTimer?.Start();
+        }
+
+        OnPropertyChanged(nameof(IsPaused));
     }
 }
