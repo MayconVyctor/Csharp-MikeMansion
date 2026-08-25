@@ -27,6 +27,8 @@ public class GameViewModel : ViewModelBase
     public event Action? GameWon;
 
     public const int TileSize = 24;
+    private const int PacmanMoveIntervalMilliseconds = 260;
+    private const int GhostMoveIntervalMilliseconds = 600;
 
     public double PacManScreenX => Game.PacMan.X * TileSize;
     public double PacManScreenY => Game.PacMan.Y * TileSize;
@@ -41,7 +43,7 @@ public class GameViewModel : ViewModelBase
         Game = new Game();
         _pacmanTimer = new DispatcherTimer
         {
-            Interval = TimeSpan.FromMilliseconds(180)
+            Interval = TimeSpan.FromMilliseconds(PacmanMoveIntervalMilliseconds)
         };
         _pacmanTimer.Tick += (s, e) =>
         {
@@ -54,7 +56,7 @@ public class GameViewModel : ViewModelBase
 
         _ghostTimer = new DispatcherTimer
         {
-            Interval = TimeSpan.FromMilliseconds(400) 
+            Interval = TimeSpan.FromMilliseconds(GhostMoveIntervalMilliseconds)
         };
         _ghostTimer.Tick += (s, e) =>
         {
