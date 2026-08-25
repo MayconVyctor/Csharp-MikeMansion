@@ -10,7 +10,7 @@
         SizeToContent="WidthAndHeight"
         CanResize="False"
         WindowStartupLocation="CenterScreen"
-        Title="PACMAN">
+        Title="Mike Mansion">
 
     <Grid>
         <Grid IsVisible="{Binding IsInMenu}" Background="Black" Width="800" Height="840">
@@ -20,7 +20,7 @@
                 Spacing="30">
 
                 <TextBlock
-                    Text="PACMAN"
+                    Text="MIKE MANSION"
                     FontSize="64"
                     FontWeight="Bold"
                     Foreground="Yellow"

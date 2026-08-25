@@ -1,4 +1,35 @@
-# CapstonePacMan
+# Mike Mansion
+
+Jogo desktop inspirado em Pac-Man, desenvolvido em C# com .NET e Avalonia UI.
+
+## Requisitos
+
+- .NET SDK 10.0 ou superior
+- Sistema operacional com suporte ao Avalonia Desktop
+
+## Como executar
+
+Na pasta `CapstonePacMan.app`, execute:
+
+```bash
+dotnet restore
+dotnet run
+```
+
+## Controles
+
+- Setas direcionais: mover o personagem
+- O movimento respeita as paredes do mapa
+
+## Estrutura
+
+- `Models`: entidades e regras do jogo
+- `ViewModels`: estado e comandos da apresentação
+- `Views`: interface Avalonia
+- `Service`: serviços da aplicação
+- `Maps`: mapas do jogo
+
+O personagem principal será representado pelo Mike. Os nomes e o conceito dos fantasmas permanecem inspirados no projeto original.
 
 
 

@@ -1,0 +1,12 @@
+# Build output
+**/bin/
+**/obj/
+
+# IDE files
+.vs/
+.vscode/*.log
+*.user
+*.suo
+
+# Local project notes
+PROJECT_NOTES.md
