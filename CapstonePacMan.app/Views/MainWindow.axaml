@@ -13,7 +13,7 @@
         Title="Mike Mansion">
 
     <Grid>
-        <Grid IsVisible="{Binding IsInMenu}" Background="Black" Width="672" Height="760">
+        <Grid IsVisible="{Binding IsInMenu}" Background="Black" Width="672" Height="1100">
             <Image
                 Source="/Assets/AssetsMikeMansion/AssetTelaInicialMikeMansion/CapaMikeMansion.jpeg"
                 Stretch="UniformToFill"

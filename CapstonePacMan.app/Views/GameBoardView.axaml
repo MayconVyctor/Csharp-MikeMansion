@@ -11,13 +11,6 @@
 
         <Rectangle Width="672" Height="40" Fill="#0D0D0D" />
 
-        <Image
-            Width="26"
-            Height="26"
-            Source="/Assets/AssetsMikeMansion/AssetsIcons/Coin.png"
-            Canvas.Left="132"
-            Canvas.Top="7" />
-
         <TextBlock
             Text="{Binding Score, StringFormat='SCORE: {0}'}"
             FontSize="24"
@@ -85,19 +78,19 @@
                                 IsVisible="{Binding IsPellet}" />
 
                             <Image
-                                Width="16"
-                                Height="16"
+                                Width="24"
+                                Height="24"
                                 Source="/Assets/AssetsMikeMansion/AssetsIcons/Power.png"
-                                Canvas.Left="4"
-                                Canvas.Top="4"
+                                Canvas.Left="0"
+                                Canvas.Top="0"
                                 IsVisible="{Binding IsPowerPellet}" />
 
                             <Image
-                                Width="18"
-                                Height="18"
-                                Source="/Assets/pacman-art/other/strawberry.png"
-                                Canvas.Left="3"
-                                Canvas.Top="3"
+                                Width="24"
+                                Height="24"
+                                Source="/Assets/AssetsMikeMansion/AssetsIcons/Controll.png"
+                                Canvas.Left="0"
+                                Canvas.Top="0"
                                 IsVisible="{Binding IsCherry}" />
                         </Canvas>
                     </DataTemplate>
@@ -105,33 +98,33 @@
             </ItemsControl>
 
             <Image
-                Width="24"
-                Height="24"
-                Source="/Assets/pacman-art/pacman-right/1.png"
+                Width="32"
+                Height="32"
+                Source="/Assets/AssetsMikeMansion/AssetsMike/mikeRight1.png"
                 IsVisible="{Binding IsFacingRight}"
                 Canvas.Left="{Binding PacManScreenX}"
                 Canvas.Top="{Binding PacManScreenY}" />
 
             <Image
-                Width="24"
-                Height="24"
-                Source="/Assets/pacman-art/pacman-left/1.png"
+                Width="32"
+                Height="32"
+                Source="/Assets/AssetsMikeMansion/AssetsMike/mikeLeft1.png"
                 IsVisible="{Binding IsFacingLeft}"
                 Canvas.Left="{Binding PacManScreenX}"
                 Canvas.Top="{Binding PacManScreenY}" />
 
             <Image
-                Width="24"
-                Height="24"
-                Source="/Assets/pacman-art/pacman-up/1.png"
+                Width="32"
+                Height="32"
+                Source="/Assets/AssetsMikeMansion/AssetsMike/mikeBack1.png"
                 IsVisible="{Binding IsFacingUp}"
                 Canvas.Left="{Binding PacManScreenX}"
                 Canvas.Top="{Binding PacManScreenY}" />
 
             <Image
-                Width="24"
-                Height="24"
-                Source="/Assets/pacman-art/pacman-down/1.png"
+                Width="32"
+                Height="32"
+                Source="/Assets/AssetsMikeMansion/AssetsMike/mikeFront1.png"
                 IsVisible="{Binding IsFacingDown}"
                 Canvas.Left="{Binding PacManScreenX}"
                 Canvas.Top="{Binding PacManScreenY}" />
