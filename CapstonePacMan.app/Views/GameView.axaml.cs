@@ -22,8 +22,12 @@ public partial class GameBoardView : UserControl
     {
         var popup = new GameResultWindow(message);
 
-        var topLevel = TopLevel.GetTopLevel(this) as Window;
-        var result = await popup.ShowDialog<string?>(topLevel);
+        if (TopLevel.GetTopLevel(this) is not Window owner)
+        {
+            return;
+        }
+
+        var result = await popup.ShowDialog<string?>(owner);
 
         if (result == "restart")
         {

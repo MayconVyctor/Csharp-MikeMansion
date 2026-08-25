@@ -61,7 +61,7 @@ public class GameMap
     }
     public bool IsWall(int x, int y)
     {   
-        if (x < 0 || x >= Width || y < 0 || y >= Height)
+        if (Tiles is null || x < 0 || x >= Width || y < 0 || y >= Height)
         {
             return true;
         }
@@ -83,7 +83,7 @@ public class GameMap
         {
             for (int x = 0; x < Width; x++)
             {
-                if (Tiles[y, x].Type == TileType.PacManSpawn)
+                if (Tiles is not null && Tiles[y, x].Type == TileType.PacManSpawn)
                 {
                     return Tiles[y, x];
                 }

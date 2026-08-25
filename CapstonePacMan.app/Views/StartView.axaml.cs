@@ -14,7 +14,7 @@ public partial class StartView : UserControl
     {
         if (this.Parent is ContentControl host)
         {
-            host.Content = new GameView();
+            host.Content = new GameBoardView();
         }
     }
 }
