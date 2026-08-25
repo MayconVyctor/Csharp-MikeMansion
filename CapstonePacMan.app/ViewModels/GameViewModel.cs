@@ -6,7 +6,7 @@ using Avalonia.Threading;
 
 namespace CapstonePacMan.app.ViewModels;
 
-public class GameViewModel : ViewModelBase
+public class GameBoardViewModel : ViewModelBase
 {
     public Game Game { get; }
     public bool IsFacingRight { get; private set; } = true;
@@ -44,7 +44,7 @@ public class GameViewModel : ViewModelBase
     private DispatcherTimer? _powerTimer;
     private DispatcherTimer? _ghostReleaseTimer;
 
-    public GameViewModel(int level = 1, string difficulty = "Normal")
+    public GameBoardViewModel(int level = 1, string difficulty = "Normal")
     {
         Game = new Game(level);
         var intervals = GetDifficultyIntervals(difficulty);

@@ -14,7 +14,7 @@ public partial class GameBoardView : UserControl
     public GameBoardView(int level, string difficulty)
     {
         InitializeComponent();
-        var vm = new GameViewModel(level, difficulty);
+        var vm = new GameBoardViewModel(level, difficulty);
         DataContext = vm;
         KeyDown += OnKeyDown;
         AttachedToVisualTree += (_, _) => Focus();
@@ -23,7 +23,7 @@ public partial class GameBoardView : UserControl
         vm.GameWon += async () => await ShowEndPopup(vm, "VOCE VENCEU!");
     }
 
-    private async System.Threading.Tasks.Task ShowEndPopup(GameViewModel vm, string message)
+    private async System.Threading.Tasks.Task ShowEndPopup(GameBoardViewModel vm, string message)
     {
         var popup = new GameResultWindow(message);
 
@@ -43,7 +43,7 @@ public partial class GameBoardView : UserControl
 
     private void OnKeyDown(object? sender, KeyEventArgs e)
     {
-        if (DataContext is GameViewModel vm)
+        if (DataContext is GameBoardViewModel vm)
         {
             if (e.Key == Key.Space)
             {

@@ -1,0 +1,159 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:CapstonePacMan.app.ViewModels"
+    xmlns:models="using:CapstonePacMan.app.Models"
+    x:DataType="vm:GameBoardViewModel"
+    x:Class="CapstonePacMan.app.Views.GameBoardView"
+    Focusable="True">
+
+    <Canvas Width="800" Height="800">
+
+        <Rectangle Width="800" Height="40" Fill="#0D0D0D" />
+
+        <TextBlock
+            Text="{Binding Score, StringFormat='SCORE: {0}'}"
+            FontSize="24"
+            FontWeight="Bold"
+            Foreground="White"
+            Canvas.Left="20"
+            Canvas.Top="5"/>
+
+        <TextBlock
+            Text="{Binding Lives, StringFormat='VIDAS: {0}'}"
+            FontSize="20"
+            FontWeight="Bold"
+            Foreground="Red"
+            Canvas.Left="600"
+            Canvas.Top="8"/>
+
+        <TextBlock
+            Text="PAUSADO"
+            FontSize="32"
+            FontWeight="Bold"
+            Foreground="Yellow"
+            HorizontalAlignment="Center"
+            Canvas.Left="340"
+            Canvas.Top="300"
+            IsVisible="{Binding IsPaused}" />
+
+        <Canvas Canvas.Top="40" Width="800" Height="800">
+
+            <Rectangle Width="800" Height="800" Fill="Black" />
+
+            <ItemsControl
+                ItemsSource="{Binding MapTiles}"
+                Width="800"
+                Height="800"
+                ClipToBounds="False">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="models:Tile">
+                        <Canvas Width="24" Height="24">
+                            <Canvas.RenderTransform>
+                                <TranslateTransform X="{Binding ScreenX}" Y="{Binding ScreenY}" />
+                            </Canvas.RenderTransform>
+
+                            <Rectangle
+                                Width="24"
+                                Height="24"
+                                Fill="#1919A6"
+                                Stroke="#4D4DFF"
+                                StrokeThickness="2"
+                                RadiusX="4"
+                                RadiusY="4"
+                                IsVisible="{Binding IsWall}" />
+
+                            <Ellipse
+                                Width="4"
+                                Height="4"
+                                Fill="Orange"
+                                Canvas.Left="10"
+                                Canvas.Top="10"
+                                IsVisible="{Binding IsPellet}" />
+
+                            <Ellipse
+                                Width="10"
+                                Height="10"
+                                Fill="Yellow"
+                                Canvas.Left="7"
+                                Canvas.Top="7"
+                                IsVisible="{Binding IsPowerPellet}" />
+
+                            <Image
+                                Width="18"
+                                Height="18"
+                                Source="/Assets/pacman-art/other/strawberry.png"
+                                Canvas.Left="3"
+                                Canvas.Top="3"
+                                IsVisible="{Binding IsCherry}" />
+                        </Canvas>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Image
+                Width="24"
+                Height="24"
+                Source="/Assets/pacman-art/pacman-right/1.png"
+                IsVisible="{Binding IsFacingRight}"
+                Canvas.Left="{Binding PacManScreenX}"
+                Canvas.Top="{Binding PacManScreenY}" />
+
+            <Image
+                Width="24"
+                Height="24"
+                Source="/Assets/pacman-art/pacman-left/1.png"
+                IsVisible="{Binding IsFacingLeft}"
+                Canvas.Left="{Binding PacManScreenX}"
+                Canvas.Top="{Binding PacManScreenY}" />
+
+            <Image
+                Width="24"
+                Height="24"
+                Source="/Assets/pacman-art/pacman-up/1.png"
+                IsVisible="{Binding IsFacingUp}"
+                Canvas.Left="{Binding PacManScreenX}"
+                Canvas.Top="{Binding PacManScreenY}" />
+
+            <Image
+                Width="24"
+                Height="24"
+                Source="/Assets/pacman-art/pacman-down/1.png"
+                IsVisible="{Binding IsFacingDown}"
+                Canvas.Left="{Binding PacManScreenX}"
+                Canvas.Top="{Binding PacManScreenY}" />
+
+            <ItemsControl
+                ItemsSource="{Binding Game.Ghosts}"
+                Width="800"
+                Height="800"
+                ClipToBounds="False">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="models:Ghost">
+                        <Image
+                            Width="24"
+                            Height="24"
+                            Source="{Binding Image}">
+                            <Image.RenderTransform>
+                                <TranslateTransform X="{Binding ScreenX}" Y="{Binding ScreenY}" />
+                            </Image.RenderTransform>
+                        </Image>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Canvas>
+    </Canvas>
+</UserControl>

@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="using:CapstonePacMan.app.ViewModels"
     xmlns:models="using:CapstonePacMan.app.Models"
-    x:DataType="vm:GameViewModel"
+    x:DataType="vm:GameBoardViewModel"
     x:Class="CapstonePacMan.app.Views.GameBoardView"
     Focusable="True">
 
