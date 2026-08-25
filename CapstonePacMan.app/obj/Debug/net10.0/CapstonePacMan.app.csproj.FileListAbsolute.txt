@@ -1,4 +1,5 @@
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/Maps/Level1.txt
+/home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/Maps/Level2.txt
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/CapstonePacMan.app
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/CapstonePacMan.app.deps.json
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/CapstonePacMan.app.runtimeconfig.json
@@ -34,6 +35,7 @@
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/Microsoft.Extensions.Logging.Abstractions.dll
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/Microsoft.IO.RecyclableMemoryStream.dll
+/home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/NetCoreAudio.dll
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/SkiaSharp.dll
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/Tmds.DBus.Protocol.dll
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/runtimes/win-arm64/native/av_libglesv2.dll
@@ -92,5 +94,3 @@
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/obj/Debug/net10.0/CapstonePacMan.app.pdb
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/obj/Debug/net10.0/CapstonePacMan.app.genruntimeconfig.cache
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/obj/Debug/net10.0/ref/CapstonePacMan.app.dll
-/home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/Maps/Level2.txt
-/home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/NetCoreAudio.dll

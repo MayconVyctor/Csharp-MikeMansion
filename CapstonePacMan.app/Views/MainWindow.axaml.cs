@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using CapstonePacMan.app.ViewModels;
 using NetCoreAudio;
+using System;
 
 namespace CapstonePacMan.app.Views;
 
@@ -13,6 +14,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         _bgmPlayer = new Player();    
+        _bgmPlayer.PlaybackFinished += LoopMusica;
         _bgmPlayer.Play("Assets/pacman-art/sounds/ringtone-intro/pacman_ringtone.wav");
     }
 
@@ -46,5 +48,13 @@ public partial class MainWindow : Window
                 _bgmPlayer.Pause();
             else
                 _bgmPlayer.Resume();
+    }
+
+    private void LoopMusica(object? sender, EventArgs e)
+     {
+            if (!_isMuted)
+            {
+                _bgmPlayer.Play("Assets/musica_fundo.wav");
+            }
     }
 }

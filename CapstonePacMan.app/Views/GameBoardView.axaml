@@ -39,7 +39,7 @@
 
         <Canvas Canvas.Top="40" Width="672" Height="552">
 
-            <Rectangle Width="672" Height="552" Fill="Black" />
+            <Rectangle Width="672" Height="552" Fill="#120e15" />
 
             <ItemsControl
                 ItemsSource="{Binding MapTiles}"
@@ -62,11 +62,11 @@
                             <Rectangle
                                 Width="24"
                                 Height="24"
-                                Fill="#1919A6"
-                                Stroke="#4D4DFF"
+                                Fill="#2b1e33"
+                                Stroke="#593b69"
                                 StrokeThickness="2"
-                                RadiusX="4"
-                                RadiusY="4"
+                                RadiusX="3"
+                                RadiusY="3"
                                 IsVisible="{Binding IsWall}" />
 
                             <Ellipse
