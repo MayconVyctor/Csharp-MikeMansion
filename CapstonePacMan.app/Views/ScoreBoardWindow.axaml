@@ -1,6 +1,7 @@
 <Window
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:CapstonePacMan.app.Models"
     x:Class="CapstonePacMan.app.Views.ScoreBoardWindow"
     Title="Placar"
     Width="420"
@@ -17,7 +18,7 @@
 
         <ItemsControl x:Name="ScoresList">
             <ItemsControl.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:ScoreBoardRow">
                     <Grid ColumnDefinitions="45,*,Auto" Margin="0,4">
                         <TextBlock Text="{Binding Rank}" Grid.Column="0" />
                         <TextBlock Text="{Binding PlayerName}" Grid.Column="1" />

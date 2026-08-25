@@ -18,7 +18,7 @@
 
         <TextBox
             x:Name="PlayerNameInput"
-            Watermark="Nome do jogador"
+            PlaceholderText="Nome do jogador"
             Width="190" />
 
         <Button
