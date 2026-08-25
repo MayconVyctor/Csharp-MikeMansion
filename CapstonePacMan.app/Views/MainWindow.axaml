@@ -47,7 +47,7 @@
         </Grid>
 
         <Grid IsVisible="{Binding !IsInMenu}">
-            <views:GameView/>
+            <views:GameBoardView/>
         </Grid>
     </Grid>
 

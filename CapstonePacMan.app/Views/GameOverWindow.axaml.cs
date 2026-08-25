@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace CapstonePacMan.app.Views;
 
-public partial class GameOverWindow : Window
+public partial class GameResultWindow : Window
 {
-    public GameOverWindow(string message)
+    public GameResultWindow(string message)
     {
         InitializeComponent();
         ResultText.Text = message;

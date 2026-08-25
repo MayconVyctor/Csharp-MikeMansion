@@ -4,9 +4,9 @@ using Avalonia.Input;
 
 namespace CapstonePacMan.app.Views;
 
-public partial class GameView : UserControl
+public partial class GameBoardView : UserControl
 {
-    public GameView()
+    public GameBoardView()
     {
         InitializeComponent();
         var vm = new GameViewModel();
@@ -20,7 +20,7 @@ public partial class GameView : UserControl
 
     private async System.Threading.Tasks.Task ShowEndPopup(GameViewModel vm, string message)
     {
-        var popup = new GameOverWindow(message);
+        var popup = new GameResultWindow(message);
 
         var topLevel = TopLevel.GetTopLevel(this) as Window;
         var result = await popup.ShowDialog<string?>(topLevel);

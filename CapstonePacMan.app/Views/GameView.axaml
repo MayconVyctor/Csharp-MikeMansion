@@ -4,12 +4,11 @@
     xmlns:vm="using:CapstonePacMan.app.ViewModels"
     xmlns:models="using:CapstonePacMan.app.Models"
     x:DataType="vm:GameViewModel"
-    x:Class="CapstonePacMan.app.Views.GameView"
+    x:Class="CapstonePacMan.app.Views.GameBoardView"
     Focusable="True">
 
-    <Canvas Width="800" Height="840">
+    <Canvas Width="800" Height="800">
 
-        <!-- Fundo da HUD -->
         <Rectangle Width="800" Height="40" Fill="#0D0D0D" />
 
         <TextBlock
