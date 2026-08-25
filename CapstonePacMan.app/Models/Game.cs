@@ -43,7 +43,7 @@ namespace CapstonePacMan.app.Models
             });
 
             Map = new GameMap();
-            Map.Load("CapstonePacMan.app/Maps/Level1.txt");
+            Map.Load("Maps/Level1.txt");
             IsPaused = false;
 
             Tile? spawn = Map.GetPacManSpawn();
@@ -64,7 +64,7 @@ namespace CapstonePacMan.app.Models
             Ghosts.Add(new Ghost { X = 13, Y = 10, ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/pinky.png" });
             Ghosts.Add(new Ghost { X = 14, Y = 10, ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/inky.png" });
 
-            Map.Load("CapstonePacMan.app/Maps/Level1.txt"); 
+            Map.Load("Maps/Level1.txt");
 
             Tile? spawn = Map.GetPacManSpawn();
             if (spawn != null)

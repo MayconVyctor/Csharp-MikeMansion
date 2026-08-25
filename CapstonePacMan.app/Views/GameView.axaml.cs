@@ -14,12 +14,13 @@ public partial class GameView : UserControl
         KeyDown += OnKeyDown;
         AttachedToVisualTree += (_, _) => Focus();
 
-        vm.GameOver += async () => await ShowGameOverPopup(vm);
+        vm.GameOver += async () => await ShowEndPopup(vm, "FIM DE JOGO");
+        vm.GameWon += async () => await ShowEndPopup(vm, "VOCE VENCEU!");
     }
 
-    private async System.Threading.Tasks.Task ShowGameOverPopup(GameViewModel vm)
+    private async System.Threading.Tasks.Task ShowEndPopup(GameViewModel vm, string message)
     {
-        var popup = new GameOverWindow();
+        var popup = new GameOverWindow(message);
 
         var topLevel = TopLevel.GetTopLevel(this) as Window;
         var result = await popup.ShowDialog<string?>(topLevel);

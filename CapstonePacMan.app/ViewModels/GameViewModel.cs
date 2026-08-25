@@ -1,6 +1,7 @@
 using CapstonePacMan.app.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Avalonia.Threading;
 
 namespace CapstonePacMan.app.ViewModels;
@@ -17,8 +18,10 @@ public class GameViewModel : ViewModelBase
     public bool IsGameOver => Game.IsGameOver; 
     public IEnumerable<Tile> MapTiles => Game.Map.AllTiles();
     private bool _gameOverTriggered = false; 
+    private bool _gameWonTriggered = false;
     private bool _isProcessingDeath = false;
     public event Action? GameOver;
+    public event Action? GameWon;
 
     public const int TileSize = 24;
 
@@ -106,6 +109,8 @@ public class GameViewModel : ViewModelBase
                 Game.Score += 50;
                 tile.Type = TileType.Empty;
             }
+
+            CheckWinCondition();
         }
 
         switch (direction)
@@ -256,6 +261,20 @@ public class GameViewModel : ViewModelBase
         }
     }
 
+    private void CheckWinCondition()
+    {
+        bool hasCollectibles = Game.Map.AllTiles().Any(tile =>
+            tile.Type == TileType.Pellet || tile.Type == TileType.PowerPellet);
+
+        if (!hasCollectibles && !_gameWonTriggered)
+        {
+            _gameWonTriggered = true;
+            _pacmanTimer?.Stop();
+            _ghostTimer?.Stop();
+            GameWon?.Invoke();
+        }
+    }
+
     private void ResetPositions()
     {
         Tile? spawn = Game.Map.GetPacManSpawn();
@@ -284,6 +303,7 @@ public class GameViewModel : ViewModelBase
         _pacmanDirection = null;
         _isProcessingDeath = false;
         _gameOverTriggered = false;
+        _gameWonTriggered = false;
 
         OnPropertyChanged(nameof(Score));
         OnPropertyChanged(nameof(Lives));

@@ -10,6 +10,7 @@
 
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="20">
         <TextBlock
+            x:Name="ResultText"
             Text="FIM DE JOGO"
             FontSize="22"
             FontWeight="Bold"
