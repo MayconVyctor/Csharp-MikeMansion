@@ -4,6 +4,8 @@ namespace CapstonePacMan.app.Views;
 
 public partial class GameResultWindow : Window
 {
+    public string PlayerName => PlayerNameInput.Text ?? string.Empty;
+
     public GameResultWindow(string message)
     {
         InitializeComponent();

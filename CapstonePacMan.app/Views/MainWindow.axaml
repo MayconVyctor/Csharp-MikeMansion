@@ -36,12 +36,14 @@
                     <Button
                         Width="220"
                         Content="Placar"
-                        HorizontalAlignment="Center"/>
+                        HorizontalAlignment="Center"
+                        Click="OnScoreBoardClick"/>
 
                     <Button
                         Width="220"
                         Content="Sair"
-                        HorizontalAlignment="Center"/>
+                        HorizontalAlignment="Center"
+                        Click="OnExitClick"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

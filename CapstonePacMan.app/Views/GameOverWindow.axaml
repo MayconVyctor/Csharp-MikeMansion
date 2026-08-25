@@ -16,8 +16,13 @@
             FontWeight="Bold"
             HorizontalAlignment="Center" />
 
+        <TextBox
+            x:Name="PlayerNameInput"
+            Watermark="Nome do jogador"
+            Width="190" />
+
         <Button
-            Content="Reiniciar"
+            Content="Salvar e reiniciar"
             HorizontalAlignment="Center"
             Padding="20,8"
             Click="OnRestartClick" />

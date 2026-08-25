@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using CapstonePacMan.app.ViewModels;
 using Avalonia.Input;
+using CapstonePacMan.app.Services;
 
 namespace CapstonePacMan.app.Views;
 
@@ -31,6 +32,7 @@ public partial class GameBoardView : UserControl
 
         if (result == "restart")
         {
+            new ScoreBoardService().SaveScore(popup.PlayerName, vm.Score);
             vm.ResetGame();
         }
     }

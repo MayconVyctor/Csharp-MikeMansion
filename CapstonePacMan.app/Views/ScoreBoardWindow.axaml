@@ -1,0 +1,36 @@
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="CapstonePacMan.app.Views.ScoreBoardWindow"
+    Title="Placar"
+    Width="420"
+    Height="360"
+    WindowStartupLocation="CenterOwner"
+    CanResize="False">
+
+    <StackPanel Margin="28" Spacing="18">
+        <TextBlock
+            Text="MELHORES PONTUACOES"
+            FontSize="24"
+            FontWeight="Bold"
+            HorizontalAlignment="Center" />
+
+        <ItemsControl x:Name="ScoresList">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="45,*,Auto" Margin="0,4">
+                        <TextBlock Text="{Binding Rank}" Grid.Column="0" />
+                        <TextBlock Text="{Binding PlayerName}" Grid.Column="1" />
+                        <TextBlock Text="{Binding Score}" Grid.Column="2" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Button
+            Content="Fechar"
+            HorizontalAlignment="Center"
+            Padding="24,8"
+            Click="OnCloseClick" />
+    </StackPanel>
+</Window>
