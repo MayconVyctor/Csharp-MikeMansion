@@ -216,7 +216,7 @@ public class GameViewModel : ViewModelBase
             {
                 continue; 
             }
-            var chosen = options[_rng.Next(options.Count)];
+            var chosen = ChooseGhostDirection(ghost, options);
             ghost.CameFromX = ghost.X;
             ghost.CameFromY = ghost.Y;
 
@@ -227,6 +227,25 @@ public class GameViewModel : ViewModelBase
             ghost.Y += chosen.dy;
         }
     }
+
+    private (int dx, int dy) ChooseGhostDirection(
+        Ghost ghost,
+        List<(int dx, int dy)> options)
+    {
+        if (ghost.State != GhostState.Chase)
+        {
+            return options[_rng.Next(options.Count)];
+        }
+
+        int targetX = Game.PacMan.X;
+        int targetY = Game.PacMan.Y;
+
+        return options
+            .OrderBy(direction => Math.Abs(ghost.X + direction.dx - targetX)
+                + Math.Abs(ghost.Y + direction.dy - targetY))
+            .First();
+    }
+
     private void CheckGhostCollision()
     {
         foreach (var ghost in Game.Ghosts)

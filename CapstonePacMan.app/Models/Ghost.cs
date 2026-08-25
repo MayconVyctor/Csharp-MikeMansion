@@ -74,7 +74,7 @@ public class Ghost : INotifyPropertyChanged
 
     public Ghost()
     {
-        State = GhostState.Spread;
+        State = GhostState.Chase;
         Speed = 1;
         LoadImage();
     }
