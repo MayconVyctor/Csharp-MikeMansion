@@ -21,6 +21,8 @@ public class GameViewModel : ViewModelBase
     private bool _gameWonTriggered = false;
     private bool _isProcessingDeath = false;
     private int _vulnerableSecondsRemaining;
+    private Tile? _cherryTile;
+    private int _nextCherryScore = 100;
     public event Action? GameOver;
     public event Action? GameWon;
 
@@ -126,7 +128,20 @@ public class GameViewModel : ViewModelBase
                 tile.Type = TileType.Empty;
                 ActivatePowerMode();
             }
+            else if (tile.Type == TileType.Cherry)
+            {
+                Game.Score += 100;
+                if (Game.PacMan.Lives < 3)
+                {
+                    Game.PacMan.Lives++;
+                    OnPropertyChanged(nameof(Lives));
+                }
 
+                tile.Type = TileType.Empty;
+                _cherryTile = null;
+            }
+
+            SpawnCherryIfEligible();
             CheckWinCondition();
         }
 
@@ -321,6 +336,27 @@ public class GameViewModel : ViewModelBase
         _powerTimer?.Start();
     }
 
+    private void SpawnCherryIfEligible()
+    {
+        if (_cherryTile != null || Game.Score < _nextCherryScore)
+        {
+            return;
+        }
+
+        List<Tile> emptyTiles = Game.Map.AllTiles()
+            .Where(tile => tile.Type == TileType.Empty)
+            .ToList();
+
+        if (emptyTiles.Count == 0)
+        {
+            return;
+        }
+
+        _cherryTile = emptyTiles[_rng.Next(emptyTiles.Count)];
+        _cherryTile.Type = TileType.Cherry;
+        _nextCherryScore += 100;
+    }
+
     private void UpdatePowerMode()
     {
         _vulnerableSecondsRemaining--;
@@ -405,6 +441,8 @@ public class GameViewModel : ViewModelBase
         _gameOverTriggered = false;
         _gameWonTriggered = false;
         _vulnerableSecondsRemaining = 0;
+        _cherryTile = null;
+        _nextCherryScore = 100;
 
         OnPropertyChanged(nameof(Score));
         OnPropertyChanged(nameof(Lives));

@@ -5,6 +5,7 @@ namespace CapstonePacMan.app.Models
     Empty,
     Pellet,
     PowerPellet,
+    Cherry,
 
     GhostSpawn,
     PacManSpawn

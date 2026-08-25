@@ -74,6 +74,14 @@
                                 Canvas.Left="7"
                                 Canvas.Top="7"
                                 IsVisible="{Binding IsPowerPellet}" />
+
+                            <Image
+                                Width="18"
+                                Height="18"
+                                Source="/Assets/pacman-art/other/strawberry.png"
+                                Canvas.Left="3"
+                                Canvas.Top="3"
+                                IsVisible="{Binding IsCherry}" />
                         </Canvas>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

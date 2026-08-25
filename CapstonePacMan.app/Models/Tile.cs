@@ -19,12 +19,14 @@ public class Tile : INotifyPropertyChanged
             OnPropertyChanged(nameof(IsWall));
             OnPropertyChanged(nameof(IsPellet));
             OnPropertyChanged(nameof(IsPowerPellet));
+            OnPropertyChanged(nameof(IsCherry));
         }
     }
 
     public bool IsWall => Type == TileType.Wall;
     public bool IsPellet => Type == TileType.Pellet;
     public bool IsPowerPellet => Type == TileType.PowerPellet;
+    public bool IsCherry => Type == TileType.Cherry;
 
     public double ScreenX => X * 24;
     public double ScreenY => Y * 24;
