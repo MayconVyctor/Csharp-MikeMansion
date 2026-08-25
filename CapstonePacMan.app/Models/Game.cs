@@ -13,12 +13,12 @@ namespace CapstonePacMan.app.Models
 
         public bool IsGameOver => PacMan.Lives <= 0;
 
-        public Game()
+        public Game(int level = 1)
         {
             PacMan = new PacMan();
 
             Score = 0;
-            CurrentLevel = 1;
+            CurrentLevel = level;
             IsPaused = false;
 
             Ghosts = new List<Ghost>();
@@ -46,7 +46,7 @@ namespace CapstonePacMan.app.Models
             });
 
             Map = new GameMap();
-            Map.Load("Maps/Level1.txt");
+            Map.Load($"Maps/Level{CurrentLevel}.txt");
             IsPaused = false;
 
             Tile? spawn = Map.GetPacManSpawn();
@@ -60,14 +60,12 @@ namespace CapstonePacMan.app.Models
         {
             PacMan = new PacMan();
             Score = 0;
-            CurrentLevel = 1;
-
             Ghosts = new List<Ghost>();
             Ghosts.Add(new Ghost { X = 12, Y = 10, ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/blinky.png" });
             Ghosts.Add(new Ghost { X = 13, Y = 10, State = GhostState.InBase, ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/pinky.png" });
             Ghosts.Add(new Ghost { X = 14, Y = 10, State = GhostState.InBase, ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/inky.png" });
 
-            Map.Load("Maps/Level1.txt");
+            Map.Load($"Maps/Level{CurrentLevel}.txt");
 
             Tile? spawn = Map.GetPacManSpawn();
             if (spawn != null)

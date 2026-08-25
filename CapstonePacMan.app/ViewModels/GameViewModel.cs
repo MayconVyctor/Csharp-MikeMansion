@@ -40,9 +40,9 @@ public class GameViewModel : ViewModelBase
     private DispatcherTimer? _powerTimer;
     private DispatcherTimer? _ghostReleaseTimer;
 
-    public GameViewModel()
+    public GameViewModel(int level = 1)
     {
-        Game = new Game();
+        Game = new Game(level);
         _pacmanTimer = new DispatcherTimer
         {
             Interval = TimeSpan.FromMilliseconds(PacmanMoveIntervalMilliseconds)

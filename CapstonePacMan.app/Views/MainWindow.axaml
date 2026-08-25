@@ -31,7 +31,14 @@
                         Width="220"
                         Content="Iniciar Jogo"
                         HorizontalAlignment="Center"
-                        Command="{Binding StartGameCommand}"/>
+                        Command="{Binding StartGameCommand}"
+                        Click="OnStartGameClick"/>
+
+                    <ComboBox
+                        Width="220"
+                        ItemsSource="{Binding AvailableLevels}"
+                        SelectedItem="{Binding SelectedLevel}"
+                        PlaceholderText="Escolha o nivel" />
 
                     <Button
                         Width="220"
@@ -49,7 +56,7 @@
         </Grid>
 
         <Grid IsVisible="{Binding !IsInMenu}">
-            <views:GameBoardView/>
+            <ContentControl x:Name="GameContent" />
         </Grid>
     </Grid>
 
