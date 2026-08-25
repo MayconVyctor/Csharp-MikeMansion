@@ -34,6 +34,7 @@
 /home/felipe/.dotnet/packs/Microsoft.NETCore.App.Ref/10.0.10/ref/net10.0/Microsoft.Win32.Primitives.dll
 /home/felipe/.dotnet/packs/Microsoft.NETCore.App.Ref/10.0.10/ref/net10.0/Microsoft.Win32.Registry.dll
 /home/felipe/.dotnet/packs/Microsoft.NETCore.App.Ref/10.0.10/ref/net10.0/mscorlib.dll
+/home/felipe/.nuget/packages/netcoreaudio/2.0.1/lib/netstandard2.1/NetCoreAudio.dll
 /home/felipe/.dotnet/packs/Microsoft.NETCore.App.Ref/10.0.10/ref/net10.0/netstandard.dll
 /home/felipe/.nuget/packages/skiasharp/3.119.4/ref/net10.0/SkiaSharp.dll
 /home/felipe/.dotnet/packs/Microsoft.NETCore.App.Ref/10.0.10/ref/net10.0/System.AppContext.dll

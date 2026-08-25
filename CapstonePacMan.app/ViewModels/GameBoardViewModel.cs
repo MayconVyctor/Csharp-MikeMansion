@@ -1,4 +1,6 @@
 using CapstonePacMan.app.Models;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,11 +40,14 @@ public class GameBoardViewModel : ViewModelBase
     public double PacManScreenX => Game.PacMan.X * TileSize;
     public double PacManScreenY => Game.PacMan.Y * TileSize;
     private string? _pacmanDirection;
+    public Bitmap? MikeImage { get; private set; }
     private string? _requestedPacmanDirection;
     private DispatcherTimer? _pacmanTimer;
     private DispatcherTimer? _ghostTimer;
     private DispatcherTimer? _powerTimer;
     private DispatcherTimer? _ghostReleaseTimer;
+    public string CurrentMikeImagePath { get; private set; } = "/Assets/AssetsMikeMansion/AssetsMike/mikeRight1.png";
+    private bool _isPoweredUp = false;  
 
     public GameBoardViewModel(int level = 1, string difficulty = "Normal")
     {
@@ -149,12 +154,14 @@ public class GameBoardViewModel : ViewModelBase
             {
                 Game.Score += 10;
                 tile.Type = TileType.Empty;
+                SoundManager.PlayChomp();
             }
             else if (tile.Type == TileType.PowerPellet)
             {
                 Game.Score += 50;
                 tile.Type = TileType.Empty;
                 ActivatePowerMode();
+                SoundManager.PlayEatFruit();
             }
             else if (tile.Type == TileType.Cherry)
             {
@@ -163,6 +170,7 @@ public class GameBoardViewModel : ViewModelBase
                 {
                     Game.PacMan.Lives++;
                     OnPropertyChanged(nameof(Lives));
+                    SoundManager.PlayChomp();
                 }
 
                 tile.Type = TileType.Empty;
@@ -389,19 +397,53 @@ public class GameBoardViewModel : ViewModelBase
         _isProcessingDeath = false;
     }
 
+    private void UpdateMikeSprite(string direction)
+    {
+        string spriteDir = direction;
+        if (direction == "Up") spriteDir = "Back";
+        if (direction == "Down") spriteDir = "Front";
+        
+        string prefix = _isPoweredUp ? "Mike" : "mike";
+        string suffix = _isPoweredUp ? "Power" : "1";
+        
+        string imagePath = $"avares://CapstonePacMan.app/Assets/AssetsMikeMansion/AssetsMike/{prefix}{spriteDir}{suffix}.png";
+
+        try 
+        {
+            var uri = new Uri(imagePath);
+            MikeImage = new Bitmap(AssetLoader.Open(uri));
+            OnPropertyChanged(nameof(MikeImage));
+        }
+        catch { }
+    }
+
     private void ActivatePowerMode()
     {
-        _vulnerableSecondsRemaining = 8;
+    _vulnerableSecondsRemaining = 8;
+    _isPoweredUp = true;
+    UpdateMikeSprite(_pacmanDirection ?? "Right");
+
+    foreach (var ghost in Game.Ghosts)
+        if (ghost.State != GhostState.Eaten && ghost.State != GhostState.InBase)
+            ghost.State = GhostState.Scared;
+
+    _powerTimer?.Start();
+    }   
+
+    private void UpdatePowerMode()
+    {
+        if (Game.IsPaused) return;
+        _vulnerableSecondsRemaining--;
+        if (_vulnerableSecondsRemaining > 0) return;
+
+        _isPoweredUp = false;
+        UpdateMikeSprite(_pacmanDirection ?? "Right");
 
         foreach (var ghost in Game.Ghosts)
-        {
-            if (ghost.State != GhostState.Eaten && ghost.State != GhostState.InBase)
-            {
-                ghost.State = GhostState.Scared;
-            }
-        }
+            if (ghost.State == GhostState.Scared)
+                ghost.State = GhostState.Chase;
 
-        _powerTimer?.Start();
+        _powerTimer?.Stop();
     }
 
     private void SpawnCherryIfEligible()
@@ -425,29 +467,6 @@ public class GameBoardViewModel : ViewModelBase
         _nextCherryScore += 100;
     }
 
-    private void UpdatePowerMode()
-    {
-        if (Game.IsPaused)
-        {
-            return;
-        }
-
-        _vulnerableSecondsRemaining--;
-        if (_vulnerableSecondsRemaining > 0)
-        {
-            return;
-        }
-
-        foreach (var ghost in Game.Ghosts)
-        {
-            if (ghost.State == GhostState.Scared)
-            {
-                ghost.State = GhostState.Chase;
-            }
-        }
-
-        _powerTimer?.Stop();
-    }
 
     private void ReturnGhostToBase(Ghost ghost)
     {

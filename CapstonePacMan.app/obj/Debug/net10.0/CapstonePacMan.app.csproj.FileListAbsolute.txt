@@ -93,3 +93,4 @@
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/obj/Debug/net10.0/CapstonePacMan.app.genruntimeconfig.cache
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/obj/Debug/net10.0/ref/CapstonePacMan.app.dll
 /home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/Maps/Level2.txt
+/home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/bin/Debug/net10.0/NetCoreAudio.dll

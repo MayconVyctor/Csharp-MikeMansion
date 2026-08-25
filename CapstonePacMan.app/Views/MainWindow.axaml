@@ -53,6 +53,11 @@
                         Content="Placar"
                         HorizontalAlignment="Center"
                         Click="OnScoreBoardClick"/>
+                    <Button
+                        Width="220"
+                        Content="Mutar / Desmutar"
+                        HorizontalAlignment="Center"
+                        Click="OnToggleMuteClick"/>
 
                     <Button
                         Width="220"

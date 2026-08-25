@@ -12,6 +12,7 @@ public partial class GameBoardView : UserControl
     }
 
     public GameBoardView(int level, string difficulty)
+    
     {
         InitializeComponent();
         var vm = new GameBoardViewModel(level, difficulty);

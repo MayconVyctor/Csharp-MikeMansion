@@ -539,6 +539,15 @@
           }
         }
       },
+      "NetCoreAudio/2.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/NetCoreAudio.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/NetCoreAudio.dll": {}
+        }
+      },
       "SkiaSharp/3.119.4": {
         "type": "package",
         "dependencies": {
@@ -1413,6 +1422,21 @@
         "microsoft.io.recyclablememorystream.nuspec"
       ]
     },
+    "NetCoreAudio/2.0.1": {
+      "sha512": "S9i/e+z9gzwXG0vY+qpF21bKEmmCE7LmqPtNM0grgE/P5vNHjUnpJdHwdb62wW/Ypa38RqqLErGkdRKxFfDGng==",
+      "type": "package",
+      "path": "netcoreaudio/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "icon.jpg",
+        "lib/netstandard2.1/NetCoreAudio.dll",
+        "netcoreaudio.2.0.1.nupkg.sha512",
+        "netcoreaudio.nuspec"
+      ]
+    },
     "SkiaSharp/3.119.4": {
       "sha512": "53NOSUZ1Us+91Sm0uCkIivh/k7jOowRErZT2sIWwPFN9mLUvdxnE6rS4sWo4255+Rd2MWUSF+j0NMZHD6Cke+Q==",
       "type": "package",
@@ -1669,7 +1693,8 @@
       "Avalonia.Fonts.Inter >= 12.1.0",
       "Avalonia.Themes.Fluent >= 12.1.0",
       "AvaloniaUI.DiagnosticsSupport >= 2.2.3",
-      "CommunityToolkit.Mvvm >= 8.4.2"
+      "CommunityToolkit.Mvvm >= 8.4.2",
+      "NetCoreAudio >= 2.0.1"
     ]
   },
   "packageFolders": {
@@ -1740,6 +1765,10 @@
           "CommunityToolkit.Mvvm": {
             "target": "Package",
             "version": "[8.4.2, )"
+          },
+          "NetCoreAudio": {
+            "target": "Package",
+            "version": "[2.0.1, )"
           }
         },
         "imports": [

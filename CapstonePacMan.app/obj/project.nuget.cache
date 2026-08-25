@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OAH+z7WuQeg=",
+  "dgSpecHash": "LJPFCKKm34Y=",
   "success": true,
   "projectFilePath": "/home/felipe/Documentos/Atividades Jala/Programacao3/CapstonePacMan/CapstonePacMan.app/CapstonePacMan.app.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,7 @@
     "/home/felipe/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "/home/felipe/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
     "/home/felipe/.nuget/packages/microsoft.io.recyclablememorystream/3.0.1/microsoft.io.recyclablememorystream.3.0.1.nupkg.sha512",
+    "/home/felipe/.nuget/packages/netcoreaudio/2.0.1/netcoreaudio.2.0.1.nupkg.sha512",
     "/home/felipe/.nuget/packages/skiasharp/3.119.4/skiasharp.3.119.4.nupkg.sha512",
     "/home/felipe/.nuget/packages/skiasharp.nativeassets.linux/3.119.4/skiasharp.nativeassets.linux.3.119.4.nupkg.sha512",
     "/home/felipe/.nuget/packages/skiasharp.nativeassets.macos/3.119.4/skiasharp.nativeassets.macos.3.119.4.nupkg.sha512",
