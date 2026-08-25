@@ -32,6 +32,7 @@ namespace CapstonePacMan.app.Models
             {
                 X = 13,
                 Y = 10,
+                State = GhostState.InBase,
                 ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/pinky.png"
             });
 
@@ -39,6 +40,7 @@ namespace CapstonePacMan.app.Models
             {
                 X = 14,
                 Y = 10,
+                State = GhostState.InBase,
                 ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/inky.png"
             });
 
@@ -61,8 +63,8 @@ namespace CapstonePacMan.app.Models
 
             Ghosts = new List<Ghost>();
             Ghosts.Add(new Ghost { X = 12, Y = 10, ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/blinky.png" });
-            Ghosts.Add(new Ghost { X = 13, Y = 10, ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/pinky.png" });
-            Ghosts.Add(new Ghost { X = 14, Y = 10, ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/inky.png" });
+            Ghosts.Add(new Ghost { X = 13, Y = 10, State = GhostState.InBase, ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/pinky.png" });
+            Ghosts.Add(new Ghost { X = 14, Y = 10, State = GhostState.InBase, ImagePath = "avares://CapstonePacMan.app/Assets/pacman-art/ghosts/inky.png" });
 
             Map.Load("Maps/Level1.txt");
 

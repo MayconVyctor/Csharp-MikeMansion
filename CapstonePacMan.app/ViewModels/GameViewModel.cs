@@ -32,6 +32,7 @@ public class GameViewModel : ViewModelBase
     private DispatcherTimer? _pacmanTimer;
     private DispatcherTimer? _ghostTimer;
     private DispatcherTimer? _powerTimer;
+    private DispatcherTimer? _ghostReleaseTimer;
 
     public GameViewModel()
     {
@@ -66,6 +67,13 @@ public class GameViewModel : ViewModelBase
             Interval = TimeSpan.FromSeconds(1)
         };
         _powerTimer.Tick += (s, e) => UpdatePowerMode();
+
+        _ghostReleaseTimer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(10)
+        };
+        _ghostReleaseTimer.Tick += (s, e) => ReleaseNextGhost();
+        _ghostReleaseTimer.Start();
     }
 
     public void MovePacman(string direction)
@@ -181,6 +189,10 @@ public class GameViewModel : ViewModelBase
     {
         foreach (var ghost in Game.Ghosts)
         {
+            if (ghost.State == GhostState.InBase)
+            {
+                continue;
+            }
 
             var options = new List<(int dx, int dy)>();
 
@@ -277,6 +289,7 @@ public class GameViewModel : ViewModelBase
                             _pacmanTimer?.Stop();
                             _ghostTimer?.Stop();
                             _powerTimer?.Stop();
+                            _ghostReleaseTimer?.Stop();
                             GameOver?.Invoke();
                         }
                     }
@@ -299,7 +312,7 @@ public class GameViewModel : ViewModelBase
 
         foreach (var ghost in Game.Ghosts)
         {
-            if (ghost.State != GhostState.Eaten)
+            if (ghost.State != GhostState.Eaten && ghost.State != GhostState.InBase)
             {
                 ghost.State = GhostState.Scared;
             }
@@ -335,6 +348,18 @@ public class GameViewModel : ViewModelBase
         ghost.State = GhostState.Chase;
     }
 
+    private void ReleaseNextGhost()
+    {
+        Ghost? ghost = Game.Ghosts.FirstOrDefault(item => item.State == GhostState.InBase);
+        if (ghost == null)
+        {
+            _ghostReleaseTimer?.Stop();
+            return;
+        }
+
+        ghost.State = GhostState.Chase;
+    }
+
     private void CheckWinCondition()
     {
         bool hasCollectibles = Game.Map.AllTiles().Any(tile =>
@@ -345,6 +370,7 @@ public class GameViewModel : ViewModelBase
             _gameWonTriggered = true;
             _pacmanTimer?.Stop();
             _ghostTimer?.Stop();
+            _ghostReleaseTimer?.Stop();
             GameWon?.Invoke();
         }
     }
@@ -391,5 +417,7 @@ public class GameViewModel : ViewModelBase
         _pacmanTimer?.Start();
         _ghostTimer?.Start();
         _powerTimer?.Stop();
+        _ghostReleaseTimer?.Stop();
+        _ghostReleaseTimer?.Start();
     }
 }

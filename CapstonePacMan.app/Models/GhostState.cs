@@ -5,6 +5,7 @@ namespace CapstonePacMan.app.Models
         Spread,
         Chase,
         Scared,
-        Eaten
+        Eaten,
+        InBase
     }
 }
